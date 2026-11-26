@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
-<meta name="description" content="BAS·GŁOS Studio — nagraj głos z mikrofonu, pogłęb go w stronę basu i pobierz jako MP3. 100% w przeglądarce, działa na GitHub Pages.">
-<title>BAS·GŁOS Studio — głęboki głos i bas → MP3</title>
+<meta name="description" content="BAS·GŁOS Studio — nagraj głos, zamień go na prawdziwy bas 808 (trap) i pobierz jako MP3. 100% w przeglądarce, działa na GitHub Pages.">
+<title>BAS·GŁOS Studio — głos → 808 bass (trap) → MP3</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0d14'/%3E%3Crect x='10' y='28' width='7' height='16' rx='3' fill='%23ff4057'/%3E%3Crect x='21' y='16' width='7' height='40' rx='3' fill='%23ffb02e'/%3E%3Crect x='32' y='8' width='7' height='48' rx='3' fill='%237c5cff'/%3E%3Crect x='43' y='22' width='7' height='28' rx='3' fill='%2322d3ee'/%3E%3C/svg%3E">
 <style>
 /* =========================================================
@@ -28,7 +28,6 @@ body{
 }
 button,select,input,textarea{font:inherit;color:inherit}
 .wrap{max-width:1280px;margin:0 auto;padding:18px 16px 60px}
-
 /* ---------- nagłówek ---------- */
 .top{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;margin-bottom:16px}
 .brand{display:flex;gap:12px;align-items:center}
@@ -50,7 +49,6 @@ h1 span{color:var(--mut);font-weight:500;letter-spacing:.02em}
 .chip.err{color:#ffd0d6;border-color:rgba(251,113,133,.5)} .chip.err::before{background:var(--bad)}
 .chip.live{color:#ffd0d6;border-color:rgba(255,64,87,.6)} .chip.live::before{background:var(--rec);animation:blink 1s infinite}
 @keyframes blink{50%{opacity:.25}}
-
 /* ---------- karty / układ ---------- */
 .card{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:16px;padding:16px}
 .card h2,.card h3{margin:0 0 4px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);font-weight:700}
@@ -60,7 +58,6 @@ h1 span{color:var(--mut);font-weight:500;letter-spacing:.02em}
 .g-params{grid-template-columns:repeat(auto-fill,minmax(290px,1fr));margin-top:14px}
 @media (max-width:980px){.g-main{grid-template-columns:1fr}}
 @media (max-width:640px){.g-viz{grid-template-columns:1fr}}
-
 /* ---------- transport ---------- */
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .field{display:flex;flex-direction:column;gap:4px;min-width:0;flex:1}
@@ -90,7 +87,6 @@ select:focus,textarea:focus,button:focus-visible,input:focus-visible{outline:2px
 .sq{width:10px;height:10px;background:currentColor;display:inline-block;border-radius:2px}
 .tri{width:0;height:0;border-left:10px solid currentColor;border-top:6px solid transparent;border-bottom:6px solid transparent;display:inline-block}
 .pause{display:inline-flex;gap:3px}.pause i{width:4px;height:12px;background:currentColor;border-radius:1px}
-
 .meter{position:relative;height:12px;background:#0a0c13;border:1px solid var(--line2);border-radius:99px;overflow:hidden}
 .meter i{position:absolute;inset:0 auto 0 0;width:0;background:linear-gradient(90deg,var(--ok) 0%,var(--ok) 60%,var(--amb) 80%,var(--rec) 100%);border-radius:99px;transition:width .05s}
 .meterrow{display:flex;align-items:center;gap:10px}
@@ -102,7 +98,6 @@ select:focus,textarea:focus,button:focus-visible,input:focus-visible{outline:2px
 .msg.err{border-color:rgba(251,113,133,.5);color:#ffd0d6}
 .msg.ok{border-color:rgba(52,211,153,.4);color:#c9f7e5}
 .msg.warn{border-color:rgba(255,176,46,.45);color:#ffe2ae}
-
 /* przełączniki */
 .switch{display:inline-flex;align-items:center;gap:9px;cursor:pointer;user-select:none}
 .switch input{position:absolute;opacity:0;pointer-events:none}
@@ -114,7 +109,6 @@ select:focus,textarea:focus,button:focus-visible,input:focus-visible{outline:2px
 .seg{display:inline-flex;background:#0b0d14;border:1px solid var(--line2);border-radius:10px;padding:3px}
 .seg button{background:transparent;border:0;padding:5px 11px;border-radius:7px;cursor:pointer;color:var(--mut);font-size:12.5px}
 .seg button.on{background:var(--acc);color:#fff}
-
 /* ---------- wizualizacje ---------- */
 canvas{display:block;width:100%;background:#080a10;border:1px solid var(--line);border-radius:12px}
 #cvOsc,#cvSpec{height:190px}
@@ -123,7 +117,6 @@ canvas{display:block;width:100%;background:#080a10;border:1px solid var(--line);
 .vhead .tag{font:11px var(--mono);color:var(--mut)}
 .legend{display:flex;gap:12px;font-size:11.5px;color:var(--mut);flex-wrap:wrap}
 .legend b{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
-
 /* ---------- presety ---------- */
 .presets{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:8px;margin:10px 0}
 .preset{text-align:left;background:#10131f;border:1px solid var(--line2);border-radius:12px;padding:11px 12px;cursor:pointer;transition:.15s}
@@ -131,7 +124,7 @@ canvas{display:block;width:100%;background:#080a10;border:1px solid var(--line);
 .preset b{display:block;font-size:13.5px;margin-bottom:2px}
 .preset span{font-size:11.5px;color:var(--mut)}
 .preset.on{border-color:var(--acc);background:linear-gradient(180deg,rgba(124,92,255,.25),rgba(124,92,255,.08));box-shadow:0 0 0 1px var(--acc) inset}
-
+.preset.is808 b::after{content:" 808";font:700 10px var(--mono);color:#fff;background:var(--rec);padding:1px 5px;border-radius:5px;margin-left:6px;vertical-align:1px}
 /* ---------- suwaki ---------- */
 .pcard h3{color:var(--txt);font-size:12.5px}
 .hint{margin:0 0 10px;font-size:11.5px;color:var(--mut)}
@@ -148,12 +141,11 @@ input[type=range]::-moz-range-progress{height:6px;border-radius:99px;background:
 input[type=range]::-moz-range-thumb{width:11px;height:11px;border-radius:50%;background:#fff;border:3px solid var(--acc)}
 .c-bass{--acc:#ff6a3d}.c-sub{--acc:#ff4057}.c-filt{--acc:#22d3ee}.c-mid{--acc:#34d399}
 .c-drv{--acc:#ffb02e}.c-comp{--acc:#7c5cff}.c-spc{--acc:#a78bfa}.c-out{--acc:#f472b6}
-
+.c-808{--acc:#ff4057;border-color:rgba(255,64,87,.45);background:linear-gradient(180deg,rgba(255,64,87,.10),var(--panel))}
 .tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .tools .grow{flex:1}
 footer{margin-top:22px;color:var(--mut);font-size:12px;text-align:center}
 footer code{font-family:var(--mono);background:#12151f;padding:1px 6px;border-radius:5px}
-
 /* toast + dialogi */
 #toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:#1b2036;border:1px solid var(--line2);padding:10px 16px;border-radius:12px;transition:.25s;z-index:50;max-width:92vw;box-shadow:0 10px 30px rgba(0,0,0,.5)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
@@ -167,13 +159,12 @@ dialog .row{justify-content:flex-end;margin-top:14px}
 </head>
 <body>
 <div class="wrap">
-
   <header class="top">
     <div class="brand">
       <div class="logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div>
-        <h1>BAS·GŁOS <span>studio</span></h1>
-        <p class="sub">Nagraj głos → pogłęb go w stronę basu → pobierz MP3. Wszystko lokalnie w przeglądarce.</p>
+        <h1>BAS·GŁOS <span>studio · 808</span></h1>
+        <p class="sub">Nagraj głos (mów, nuć, „bum”) → aplikacja zamieni go na prawdziwy bas 808 → pobierz MP3. Wszystko lokalnie.</p>
       </div>
     </div>
     <div class="chips" aria-label="Statusy">
@@ -182,14 +173,11 @@ dialog .row{justify-content:flex-end;margin-top:14px}
       <span class="chip" id="chipCtx">Audio: uśpione</span>
     </div>
   </header>
-
   <div id="fatal" class="msg err" role="alert"></div>
-
   <div class="grid g-main">
     <!-- ======================= TRANSPORT ======================= -->
     <section class="card" aria-label="Nagrywanie i odtwarzanie">
       <h2>Nagrywanie</h2>
-
       <div class="row" style="margin-top:10px;align-items:flex-end">
         <div class="field">
           <label for="selDev">Wejście audio (mikrofon)</label>
@@ -202,10 +190,8 @@ dialog .row{justify-content:flex-end;margin-top:14px}
           <input type="checkbox" id="chkBrowserFx"><span class="tr"></span><span class="lbl">Filtry przeglądarki (echo/szum/AGC)</span>
         </label>
       </div>
-
       <div class="timer"><span id="timer">00:00.0</span><small id="timerTotal"></small></div>
       <div class="state" id="stateTxt">Gotowy. Naciśnij „Nagrywaj”, aby zacząć.</div>
-
       <div class="btns">
         <button class="btn rec" id="btnRec" type="button"><span class="dot"></span>Nagrywaj</button>
         <button class="btn" id="btnStop" type="button" disabled><span class="sq"></span>Stop</button>
@@ -213,7 +199,6 @@ dialog .row{justify-content:flex-end;margin-top:14px}
         <button class="btn pri" id="btnMp3" type="button" disabled style="grid-column:span 2">⬇ Pobierz MP3</button>
         <button class="btn" id="btnClear" type="button" disabled>✕ Wyczyść</button>
       </div>
-
       <div class="row" style="justify-content:space-between">
         <div class="row">
           <label class="lbl" for="selKbps">Jakość MP3</label>
@@ -223,29 +208,24 @@ dialog .row{justify-content:flex-end;margin-top:14px}
         </div>
         <button class="btn sm ghost" id="btnWav" type="button" disabled>Pobierz WAV (bez kompresji)</button>
       </div>
-
       <div class="divider"></div>
-
       <div class="meterrow">
         <span class="lbl" style="width:52px">Poziom</span>
         <div class="meter" style="flex:1" aria-hidden="true"><i id="meterBar"></i></div>
         <span class="mono" id="meterTxt" style="width:74px;text-align:right;font-size:12px">−∞ dB</span>
         <span class="led" id="clipLed" title="Zapala się, gdy sygnał dobija do 0 dBFS">CLIP</span>
       </div>
-
       <div class="divider"></div>
-
       <div class="row" style="justify-content:space-between">
         <label class="switch"><input type="checkbox" id="chkMonitor"><span class="tr"></span><b>Live Monitor</b> <span class="lbl">(odsłuch na żywo)</span></label>
         <div class="row" style="gap:8px;min-width:150px;flex:1;max-width:230px">
           <span class="lbl">Głośn.</span><input type="range" id="monVol" min="0" max="1" step="0.01" value="0.7" aria-label="Głośność monitora">
         </div>
       </div>
-      <p class="hint" style="margin:8px 0 0">⚠ Używaj <b>słuchawek</b> — z głośnikami powstanie sprzężenie (piski). Odsłuch ma opóźnienie ok. 0,1 s. Nagranie zawsze zachowuje czysty oryginał, a efekty są liczone na nagranym buforze — możesz zmieniać preset także <b>po</b> nagraniu.</p>
-
-      <div class="msg" id="msg" role="status" aria-live="polite">Wybierz preset lub ustaw suwaki, potem nagraj głos.</div>
+      <p class="hint" style="margin:8px 0 0">⚠ Używaj <b>słuchawek</b> — z głośnikami powstanie sprzężenie (piski). Odsłuch ma opóźnienie ok. 0,1 s. Nagranie zawsze zachowuje czysty oryginał, a bas 808 jest liczony na nagranym buforze — możesz zmieniać preset także <b>po</b> nagraniu.</p>
+      <p class="hint" style="margin:8px 0 0">💡 <b>Jak nagrywać 808:</b> nuć jedną długą głoską („ooo”, „mmm”) i zmieniaj wysokość — bas pójdzie za Twoją melodią ze slide'ami. Albo użyj presetu „Bitbox → 808” i krótkie „bum / dum” wyzwalają stałą nutę.</p>
+      <div class="msg" id="msg" role="status" aria-live="polite">Wybierz preset 808 lub ustaw suwaki, potem nagraj głos.</div>
     </section>
-
     <!-- ======================= WIZUALIZACJE ======================= -->
     <section class="card" aria-label="Wizualizacje">
       <div class="grid g-viz">
@@ -260,7 +240,6 @@ dialog .row{justify-content:flex-end;margin-top:14px}
           <canvas id="cvSpec" aria-label="Analizator widma"></canvas>
         </div>
       </div>
-
       <div style="margin-top:14px">
         <div class="vhead">
           <h2>Nagrana ścieżka</h2>
@@ -277,7 +256,6 @@ dialog .row{justify-content:flex-end;margin-top:14px}
       </div>
     </section>
   </div>
-
   <!-- ======================= PRESETY ======================= -->
   <section class="card" style="margin-top:14px" aria-label="Presety">
     <div class="vhead" style="margin-bottom:0">
@@ -293,17 +271,13 @@ dialog .row{justify-content:flex-end;margin-top:14px}
     <div class="presets" id="presets"></div>
     <div class="hint" style="margin:0">Aktywny: <b id="activePreset" style="color:var(--txt)">—</b> · Podwójne kliknięcie suwaka przywraca jego wartość domyślną.</div>
   </section>
-
   <!-- ======================= PARAMETRY ======================= -->
   <div class="grid g-params" id="params"></div>
-
   <footer>
     Aplikacja statyczna (HTML + CSS + JS + Web Audio API) — brak serwera, brak wysyłania nagrań. Przetwarzanie dzieje się wyłącznie na Twoim urządzeniu.
   </footer>
 </div>
-
 <div id="toast" role="status" aria-live="polite"></div>
-
 <dialog id="phonesDlg">
   <h3>🎧 Czy masz założone słuchawki?</h3>
   <p>Live Monitor odtwarza Twój głos w czasie rzeczywistym. Przy głośnikach mikrofon „usłyszy” sam siebie i powstanie głośne <b>sprzężenie zwrotne</b>.</p>
@@ -313,7 +287,6 @@ dialog .row{justify-content:flex-end;margin-top:14px}
     <button class="btn pri" id="phonesYes" type="button">Mam słuchawki — włącz</button>
   </div>
 </dialog>
-
 <dialog id="importDlg">
   <h3>Wczytaj ustawienia (JSON)</h3>
   <p>Wklej JSON skopiowany wcześniej przyciskiem „Kopiuj JSON”.</p>
@@ -323,25 +296,23 @@ dialog .row{justify-content:flex-end;margin-top:14px}
     <button class="btn pri" id="importYes" type="button">Wczytaj</button>
   </div>
 </dialog>
-
 <noscript><p style="padding:20px;text-align:center">Ta aplikacja wymaga włączonego JavaScriptu.</p></noscript>
-
 <script>
 'use strict';
 /* =========================================================================
-   BAS·GŁOS Studio
+   BAS·GŁOS Studio — wersja 808
    Architektura:
    1) Opisy parametrów (GROUPS) → z nich generowany jest cały interfejs suwaków
    2) VoiceCore  — własny DSP w JS: bramka szumów + ziarnowy pitch shifter +
-                   generator sub-basu (oktawa w dół). Działa identycznie na żywo
-                   (ScriptProcessorNode) i offline (renderowanie nagrania).
+                   sub-bas + SYNTEZATOR 808 STEROWANY GŁOSEM
+                   (detekcja wysokości NSDF → oscylator sinusoidalny z glide,
+                   obwiednią 808, kopnięciem pitch-drop i przyciąganiem do nut).
+                   Działa identycznie na żywo (ScriptProcessorNode) i offline.
    3) buildGraph / applyParams — łańcuch Web Audio (EQ, filtry, drive, kompresor,
-                   pogłos, echo, master, limiter). Ten sam kod dla trybu live
-                   (AudioContext) i eksportu (OfflineAudioContext).
+                   pogłos, echo, master, limiter). Ten sam kod dla live i eksportu.
    4) Nagrywanie surowego mikrofonu → render offline → odtwarzanie / MP3 / WAV
    5) Wizualizacje canvas (oscyloskop, widmo, przebieg nagrania)
    ========================================================================= */
-
 /* ------------------------------ narzędzia ------------------------------ */
 const $  = (s, r = document) => r.querySelector(s);
 const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
@@ -352,70 +323,91 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const slugify = s => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ł/gi, 'l')
   .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
 const fmtTime = s => { s = Math.max(0, s || 0); return pad2(Math.floor(s / 60)) + ':' + (s % 60).toFixed(1).padStart(4, '0'); };
-
 /* ----------------------- 1. OPIS PARAMETRÓW ---------------------------- */
+const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 const GROUPS = [
-  { id: 'pitch', cls: 'c-sub', title: 'Wysokość głosu i sub-bas',
-    hint: 'Pitch obniża głos (ziarnowy pitch shifter). Sub-bas dokłada kopię głosu o oktawę niżej.',
+  { id: 'bass808', cls: 'c-808', title: '808 Bass z głosu (synteza)',
+    hint: 'Aplikacja wykrywa wysokość Twojego głosu i gra nią syntetycznym sinusem 808 (slide, kopnięcie, zanik) — to już nie jest głos, tylko prawdziwy bas. Dla czystego basu ustaw „Głos oryginalny” na 0%.',
     params: [
-      { k: 'pitch', label: 'Pitch (przesunięcie)', min: -12, max: 4, step: 0.1, unit: 'st', dec: 1, def: 0, sign: true, rand: [-12, -1] },
-      { k: 'sub', label: 'Sub-bas (oktawa w dół)', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [0, 80] },
+      { k: 'bass', label: 'Poziom 808', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [70, 100] },
+      { k: 'voiceMix', label: 'Głos oryginalny w miksie', min: 0, max: 100, step: 1, unit: '%', def: 100, rand: [0, 0] },
+      { k: 'bassMode', label: 'Źródło wysokości', type: 'select', def: 'track',
+        options: [['track', 'Śledź melodię głosu'], ['fixed', 'Stała nuta (głos tylko wyzwala 808)']] },
+      { k: 'bassEnv', label: 'Obwiednia', type: 'select', def: 'pluck',
+        options: [['pluck', '808: uderzenie + zanik'], ['follow', 'Podążaj za głośnością głosu']] },
+      { k: 'bassOct', label: 'Transpozycja basu', min: -4, max: 1, step: 1, unit: 'okt', def: -2, sign: true, rand: [-3, -1] },
+      { k: 'bassSnap', label: 'Skala (przyciąganie do nut)', type: 'select', def: 'chrom',
+        options: [['off', 'Brak (płynne glissando)'], ['chrom', 'Chromatyczna (każda nuta)'], ['minor', 'Moll naturalny'], ['harm', 'Moll harmoniczny'], ['pent', 'Pentatonika moll'], ['major', 'Dur']] },
+      { k: 'bassRoot', label: 'Tonacja / nuta bazowa', type: 'select', def: '5',
+        options: NOTE_NAMES.map((n, i) => [String(i), n]) },
+      { k: 'bassGlide', label: 'Glide / slide', min: 0, max: 500, step: 5, unit: 'ms', def: 70, rand: [30, 160] },
+      { k: 'bassDecay', label: 'Długość 808 (zanik −60 dB)', min: 150, max: 4000, step: 50, unit: 'ms', def: 1200, rand: [500, 2200] },
+      { k: 'bassRel', label: 'Release (po urwaniu głosu)', min: 10, max: 600, step: 5, unit: 'ms', def: 120, rand: [60, 250] },
+      { k: 'bassPunch', label: 'Punch (kopnięcie na starcie)', min: 0, max: 100, step: 1, unit: '%', def: 35, rand: [10, 60] },
+      { k: 'bassColor', label: 'Kolor / harmoniczne', min: 0, max: 100, step: 1, unit: '%', def: 30, rand: [10, 60] },
+      { k: 'bassSens', label: 'Czułość wykrywania głosu', min: -60, max: -20, step: 1, unit: 'dB', def: -42 },
+    ] },
+  { id: 'pitch', cls: 'c-sub', title: 'Wysokość głosu i sub-bas',
+    hint: 'Dotyczy samego głosu: pitch obniża go (ziarnowy pitch shifter), sub-bas dokłada kopię głosu o oktawę niżej.',
+    params: [
+      { k: 'pitch', label: 'Pitch (przesunięcie)', min: -12, max: 4, step: 0.1, unit: 'st', dec: 1, def: 0, sign: true, rand: [0, 0] },
+      { k: 'sub', label: 'Sub-bas z głosu (oktawa w dół)', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [0, 0] },
       { k: 'subCut', label: 'Sub: odcięcie góry', min: 60, max: 250, step: 1, unit: 'Hz', def: 140, rand: [100, 180] },
     ] },
   { id: 'shelf', cls: 'c-bass', title: 'Low-shelf — podbicie basu',
-    hint: 'Półka niskich tonów. „Q” dodaje wąski garb przy częstotliwości półki (ostrość basu).',
+    hint: 'Półka niskich tonów (działa na głos i na 808). „Q” dodaje wąski garb przy częstotliwości półki.',
     params: [
       { k: 'shelfFreq', label: 'Częstotliwość półki', min: 40, max: 250, step: 1, unit: 'Hz', def: 100, rand: [60, 160] },
-      { k: 'shelfGain', label: 'Wzmocnienie', min: -12, max: 24, step: 0.5, unit: 'dB', dec: 1, def: 0, sign: true, rand: [0, 16] },
+      { k: 'shelfGain', label: 'Wzmocnienie', min: -12, max: 24, step: 0.5, unit: 'dB', dec: 1, def: 0, sign: true, rand: [0, 10] },
       { k: 'shelfQ', label: 'Dobroć / nachylenie (Q)', min: 0.3, max: 3, step: 0.05, unit: 'Q', dec: 2, def: 0.7, rand: [0.5, 1.5] },
     ] },
   { id: 'filters', cls: 'c-filt', title: 'Filtry HP / LP',
-    hint: 'Górnoprzepustowy usuwa dudnienie, dolnoprzepustowy ścina sybilanty lub robi „bas zza ściany”.',
+    hint: 'HP działa tylko na głos. Dolnoprzepustowy ścina górę całości — niższy = ciemniejszy, „bardziej podziemny” 808.',
     params: [
-      { k: 'hp', label: 'High-pass: odcięcie dołu', min: 20, max: 120, step: 1, unit: 'Hz', def: 20, rand: [25, 80] },
-      { k: 'lp', label: 'Low-pass: odcięcie góry', min: 120, max: 18000, step: 1, unit: 'Hz', def: 18000, log: true, rand: [600, 12000] },
+      { k: 'hp', label: 'High-pass głosu: odcięcie dołu', min: 20, max: 120, step: 1, unit: 'Hz', def: 20, rand: [25, 80] },
+      { k: 'lp', label: 'Low-pass: odcięcie góry', min: 120, max: 18000, step: 1, unit: 'Hz', def: 18000, log: true, rand: [1500, 9000] },
       { k: 'lpQ', label: 'Low-pass: rezonans (Q)', min: 0.5, max: 12, step: 0.1, unit: 'Q', dec: 1, def: 0.7, rand: [0.6, 3] },
     ] },
   { id: 'mid', cls: 'c-mid', title: 'Parametryczny środek (Body)',
-    hint: 'Dodaje lub wycina „ciało” głosu, żeby nie był tylko buczeniem.',
+    hint: 'Dodaje lub wycina „ciało”, żeby bas był słyszalny także na małych głośnikach.',
     params: [
       { k: 'midFreq', label: 'Częstotliwość', min: 180, max: 800, step: 1, unit: 'Hz', def: 300, rand: [200, 450] },
       { k: 'midGain', label: 'Wzmocnienie', min: -12, max: 12, step: 0.5, unit: 'dB', dec: 1, def: 0, sign: true, rand: [-3, 5] },
       { k: 'midQ', label: 'Dobroć (Q)', min: 0.3, max: 4, step: 0.05, unit: 'Q', dec: 2, def: 1, rand: [0.6, 1.6] },
     ] },
   { id: 'drive', cls: 'c-drv', title: 'Drive / Saturacja',
-    hint: 'Od ciepłej saturacji lampowej po ostry przester. Dodaje harmonicznych i „mięso” basu.',
+    hint: 'Od ciepłej saturacji po ostry przester 808. Dodaje harmonicznych i „mięso” basu.',
     params: [
-      { k: 'drive', label: 'Siła drive', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [0, 55] },
+      { k: 'drive', label: 'Siła drive', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [10, 65] },
       { k: 'driveType', label: 'Charakter', type: 'select', def: 'tanh',
         options: [['tanh', 'Ciepła saturacja (tanh)'], ['tube', 'Lampa (asymetryczna)'], ['hard', 'Ostry przester (hard clip)']] },
     ] },
   { id: 'comp', cls: 'c-comp', title: 'Kompresor dynamiki',
-    hint: 'Wyrównuje głośność, żeby niskie tony nie skakały. Szczegóły (attack/release) w trybie zaawansowanym.',
+    hint: 'Wyrównuje głośność. Szczegóły (attack/release) w trybie zaawansowanym.',
     params: [
-      { k: 'compThr', label: 'Próg (threshold)', min: -60, max: 0, step: 1, unit: 'dB', def: 0, rand: [-38, -16] },
-      { k: 'compRatio', label: 'Siła (ratio)', min: 1, max: 20, step: 0.5, unit: ':1', dec: 1, def: 1, rand: [2, 10] },
+      { k: 'compThr', label: 'Próg (threshold)', min: -60, max: 0, step: 1, unit: 'dB', def: 0, rand: [-30, -14] },
+      { k: 'compRatio', label: 'Siła (ratio)', min: 1, max: 20, step: 0.5, unit: ':1', dec: 1, def: 1, rand: [2, 8] },
       { k: 'compMakeup', label: 'Wzmocnienie po kompresji', min: 0, max: 18, step: 0.5, unit: 'dB', dec: 1, def: 0, rand: [0, 6] },
       { k: 'compAtk', label: 'Attack', min: 1, max: 100, step: 1, unit: 'ms', def: 10, adv: true },
       { k: 'compRel', label: 'Release', min: 20, max: 1000, step: 10, unit: 'ms', def: 200, adv: true },
     ] },
   { id: 'gate', cls: 'c-filt', title: 'Bramka szumów',
-    hint: 'Wycisza tło, gdy nie mówisz. Ustaw tuż nad poziomem szumu.',
+    hint: 'Wycisza tło, gdy nie mówisz (przed wykrywaniem wysokości). Ustaw tuż nad poziomem szumu.',
     params: [
-      { k: 'gate', label: 'Próg ciszy', min: -80, max: -20, step: 1, unit: 'dB', def: -80, rand: [-70, -48],
+      { k: 'gate', label: 'Próg ciszy', min: -80, max: -20, step: 1, unit: 'dB', def: -80, rand: [-70, -52],
         fmt: v => v <= -79 ? 'wyłączona' : v + ' dB' },
     ] },
   { id: 'space', cls: 'c-spc', title: 'Przestrzeń i tekstura',
-    hint: 'Balans oryginału z efektem, pogłos splotowy (jaskinia / hala) i echo.',
+    hint: 'Balans oryginału z efektem, pogłos splotowy i echo. Do 808 zwykle zostaw pogłos na 0.',
     params: [
-      { k: 'mix', label: 'Dry / Wet (efekt)', min: 0, max: 100, step: 1, unit: '% wet', def: 100, rand: [85, 100] },
-      { k: 'revWet', label: 'Pogłos — ilość', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [0, 35] },
-      { k: 'revTime', label: 'Pogłos — długość', min: 0.2, max: 6, step: 0.1, unit: 's', dec: 1, def: 1.5, rand: [0.5, 4] },
-      { k: 'echoMix', label: 'Echo — ilość', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [0, 18] },
+      { k: 'mix', label: 'Dry / Wet (efekt)', min: 0, max: 100, step: 1, unit: '% wet', def: 100, rand: [100, 100] },
+      { k: 'revWet', label: 'Pogłos — ilość', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [0, 12] },
+      { k: 'revTime', label: 'Pogłos — długość', min: 0.2, max: 6, step: 0.1, unit: 's', dec: 1, def: 1.5, rand: [0.5, 3] },
+      { k: 'echoMix', label: 'Echo — ilość', min: 0, max: 100, step: 1, unit: '%', def: 0, rand: [0, 10] },
       { k: 'echoTime', label: 'Echo — czas', min: 50, max: 800, step: 5, unit: 'ms', def: 250, rand: [120, 450] },
     ] },
   { id: 'out', cls: 'c-out', title: 'Wyjście',
-    hint: 'Master + limiter ze zabezpieczeniem przed przesterem (twardy sufit −0,2 dBFS).',
+    hint: 'Master + limiter z zabezpieczeniem przed przesterem (twardy sufit −0,2 dBFS).',
     params: [
       { k: 'master', label: 'Master Gain', min: -24, max: 12, step: 0.5, unit: 'dB', dec: 1, def: 0, sign: true },
     ] },
@@ -423,32 +415,45 @@ const GROUPS = [
 const PARAMS = GROUPS.flatMap(g => g.params);
 const PDESC = Object.fromEntries(PARAMS.map(p => [p.k, p]));
 const DEFAULTS = Object.fromEntries(PARAMS.map(p => [p.k, p.def]));
-
 /* ------------------------------ PRESETY -------------------------------- */
 const PRESETS = [
-  { name: 'Głęboki Lektor', desc: 'Ciepły, niski, czytelny głos', v: {
+  { name: '808 Trap (PureSnow)', desc: 'Czysty 808 z głosu: slide, kopnięcie, długi zanik', is808: true, v: {
+      bass: 90, voiceMix: 0, bassMode: 'track', bassEnv: 'pluck', bassOct: -2, bassSnap: 'chrom', bassRoot: '5',
+      bassGlide: 90, bassDecay: 1400, bassRel: 140, bassPunch: 40, bassColor: 35, bassSens: -44,
+      sub: 0, pitch: 0, shelfFreq: 70, shelfGain: 3, shelfQ: 0.8, lp: 4500, lpQ: 0.7, midFreq: 300, midGain: 0,
+      drive: 22, driveType: 'tanh', compThr: -20, compRatio: 4, compMakeup: 3, compAtk: 10, compRel: 160,
+      gate: -62, mix: 100, revWet: 0, master: -1 } },
+  { name: 'Rage / Distorted 808', desc: 'Przesterowany, agresywny bas z długim slide’em', is808: true, v: {
+      bass: 85, voiceMix: 0, bassMode: 'track', bassEnv: 'pluck', bassOct: -2, bassSnap: 'chrom', bassRoot: '5',
+      bassGlide: 120, bassDecay: 1800, bassRel: 160, bassPunch: 55, bassColor: 70, bassSens: -44,
+      shelfFreq: 80, shelfGain: 2, shelfQ: 0.9, lp: 6000, lpQ: 1.2, midFreq: 260, midGain: 2, midQ: 1,
+      drive: 60, driveType: 'hard', compThr: -22, compRatio: 6, compMakeup: 4, compAtk: 6, compRel: 140,
+      gate: -62, mix: 100, revWet: 0, master: -4 } },
+  { name: 'Sub Slide (płynny)', desc: 'Gładki sub-bas, bez przyciągania do nut — czyste glissando', is808: true, v: {
+      bass: 95, voiceMix: 0, bassMode: 'track', bassEnv: 'follow', bassOct: -2, bassSnap: 'off',
+      bassGlide: 220, bassDecay: 1200, bassRel: 200, bassPunch: 8, bassColor: 8, bassSens: -44,
+      shelfFreq: 70, shelfGain: 2, shelfQ: 0.7, lp: 1200, lpQ: 0.7, drive: 6, driveType: 'tanh',
+      compThr: -18, compRatio: 3, compMakeup: 2, gate: -62, mix: 100, master: 0 } },
+  { name: 'Bitbox → 808 (stała nuta)', desc: 'Krótkie „bum / dum” wyzwalają jedną nutę 808 (F1)', is808: true, v: {
+      bass: 90, voiceMix: 0, bassMode: 'fixed', bassEnv: 'pluck', bassOct: -2, bassSnap: 'chrom', bassRoot: '5',
+      bassGlide: 0, bassDecay: 1000, bassRel: 90, bassPunch: 50, bassColor: 40, bassSens: -38,
+      shelfFreq: 70, shelfGain: 3, shelfQ: 0.8, lp: 5000, drive: 25, driveType: 'tanh',
+      compThr: -20, compRatio: 4, compMakeup: 3, gate: -58, mix: 100, master: -1 } },
+  { name: 'Głęboki Lektor', desc: 'Ciepły, niski, czytelny głos (bez 808)', v: {
       pitch: -3.5, sub: 25, subCut: 130, shelfFreq: 120, shelfGain: 8, shelfQ: 0.8, hp: 70, lp: 9000, lpQ: 0.7,
       midFreq: 260, midGain: 3, midQ: 0.9, drive: 12, driveType: 'tanh', compThr: -26, compRatio: 4, compMakeup: 4,
       compAtk: 8, compRel: 180, gate: -58, mix: 95, revWet: 6, revTime: 0.8, master: 0 } },
-  { name: 'Sub-Basowy Kolos / Zwiastun', desc: 'Potężny dół, subharmoniczne, mocna kompresja', v: {
-      pitch: -6, sub: 70, subCut: 120, shelfFreq: 90, shelfGain: 14, shelfQ: 1.0, hp: 35, lp: 6000, lpQ: 0.9,
-      midFreq: 220, midGain: 2, midQ: 0.8, drive: 28, driveType: 'tanh', compThr: -30, compRatio: 8, compMakeup: 6,
-      compAtk: 5, compRel: 120, gate: -55, mix: 100, revWet: 14, revTime: 1.8, master: -2 } },
-  { name: 'Demon z Podziemia', desc: 'Skrajnie niski pitch, saturacja, mroczny pogłos', v: {
+  { name: 'Demon z Podziemia', desc: 'Skrajnie niski głos, saturacja, mroczny pogłos', v: {
       pitch: -11, sub: 55, subCut: 110, shelfFreq: 80, shelfGain: 12, shelfQ: 1.2, hp: 30, lp: 2200, lpQ: 3,
       midFreq: 200, midGain: 4, midQ: 1.2, drive: 55, driveType: 'tube', compThr: -28, compRatio: 6, compMakeup: 5,
       compAtk: 6, compRel: 250, gate: -52, mix: 100, revWet: 40, revTime: 4.5, echoMix: 18, echoTime: 380, master: -3 } },
-  { name: 'Bas zza Ściany / Tłumik', desc: 'Ścięta góra, uwypuklony dół, stłumiony klimat', v: {
-      pitch: -2, sub: 15, subCut: 160, shelfFreq: 110, shelfGain: 10, shelfQ: 0.9, hp: 45, lp: 450, lpQ: 1.5,
-      midFreq: 250, midGain: 2, midQ: 1, drive: 5, driveType: 'tanh', compThr: -24, compRatio: 3, compMakeup: 3,
-      gate: -60, mix: 100, revWet: 8, revTime: 0.6, master: 2 } },
   { name: 'Czysty Podgląd', desc: 'Bez efektów — porównanie „przed i po”', v: {} },
 ];
-
+const CLEAN_IDX = PRESETS.findIndex(p => p.name === 'Czysty Podgląd');
 /* ------------------------------- STAN ---------------------------------- */
 const state = {
-  params: { ...DEFAULTS },
-  presetName: 'Czysty Podgląd', presetIdx: 4, modified: false,
+  params: { ...DEFAULTS, ...PRESETS[0].v },
+  presetName: PRESETS[0].name, presetIdx: 0, modified: false,
   ab: 'proc',                 // 'proc' | 'orig'
   micOn: false, micAuto: false,
   monitorOn: false, phonesOK: false, monVol: 0.7,
@@ -461,12 +466,20 @@ let micStream = null, micSrc = null;
 let take = null;              // { raw, sr, rawBuf, processed, ver, saved }
 const rec = { active: false, chunks: [], len: 0, peaks: [], sr: 44100 };
 const SR_FALLBACK = 48000;
-
 /* ========================= 2. DSP: VoiceCore ============================= */
-/* Bramka + ziarnowy pitch shifter (dwie głowice odczytu w buforze kołowym ze
-   skrośnym wygaszaniem okienkiem Hanna) + druga głowica dla sub-basu (połowa
-   częstotliwości). Wyjścia (3 kanały): 0 = głos po pitch, 1 = sub-bas,
-   2 = suchy głos (po bramce, opóźniony tak samo jak tor mokry). */
+/* Skale do przyciągania nut (12 flag, indeks = półton od tonacji) */
+const mkScale = a => { const s = new Uint8Array(12); a.forEach(i => { s[i] = 1; }); return s; };
+const SCALES = {
+  off: null,
+  chrom: mkScale([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]),
+  minor: mkScale([0, 2, 3, 5, 7, 8, 10]),
+  harm: mkScale([0, 2, 3, 5, 7, 8, 11]),
+  pent: mkScale([0, 3, 5, 7, 10]),
+  major: mkScale([0, 2, 4, 5, 7, 9, 11]),
+};
+/* Bramka + ziarnowy pitch shifter + sub + syntezator 808 sterowany głosem.
+   Wyjścia (4 kanały): 0 = głos po pitch, 1 = sub z głosu, 2 = suchy głos
+   (po bramce, opóźniony jak tor mokry), 3 = SYNTETYCZNY 808. */
 class VoiceCore {
   constructor(sr) {
     this.sr = sr;
@@ -478,10 +491,25 @@ class VoiceCore {
     this.rel = 1 - Math.exp(-1 / (0.12 * sr));
     this.envRel = Math.exp(-1 / (0.03 * sr));
     this.holdN = Math.round(0.08 * sr);
+    // --- 808: detekcja wysokości (NSDF na sygnale zdecymowanym do ok. 12 kHz) ---
+    this.D = Math.max(1, Math.round(sr / 12000)); this.fd = sr / this.D;
+    this.minLag = Math.max(2, Math.floor(this.fd / 600)); this.maxLag = Math.ceil(this.fd / 65);
+    this.WIN = 448; this.DN = 1024; this.dmask = 1023;
+    this.dbuf = new Float32Array(this.DN); this.nsdf = new Float32Array(this.maxLag + 4); this.pk = new Int32Array(40);
+    this.feRel = Math.exp(-1 / (0.015 * sr)); this.seK = 1 / (0.08 * sr);
+    this.openN = Math.round(0.06 * sr); this.vHoldN = Math.round(0.05 * sr); this.retrigN = Math.round(0.12 * sr);
+    this.punchK = Math.exp(-1 / (0.03 * sr)); this.atkK = 1 - Math.exp(-1 / (0.002 * sr));
+    this.fHist = [0, 0, 0];
     this.reset();
     this.setParams({ pitch: 0, sub: 0, gate: -80 });
   }
-  reset() { this.buf.fill(0); this.w = 0; this.phA = 0; this.phB = 0.25; this.env = 0; this.gain = 1; this.hold = 0; }
+  reset() {
+    this.buf.fill(0); this.w = 0; this.phA = 0; this.phB = 0.25; this.env = 0; this.gain = 1; this.hold = 0;
+    this.dbuf.fill(0); this.dw = 0; this.dacc = 0; this.dcnt = 0; this.hopc = 0;
+    this.cf = 0; this.cc = 0; this.detF = 0; this.fHist[0] = this.fHist[1] = this.fHist[2] = 0; this.voicedHold = 0;
+    this.fe = 0; this.se = 0; this.openHold = 0; this.noteOn = false; this.sinceTrig = 1e9; this.decEnv = 0;
+    this.punch = 0; this.amp = 0; this.ph = 0; this.lf = Math.log2(55); this.lft = this.lf;
+  }
   setParams(p) {
     const ratio = Math.pow(2, p.pitch / 12);
     this.bypassA = Math.abs(p.pitch) < 0.05;
@@ -490,8 +518,114 @@ class VoiceCore {
     this.incB = (1 - ratio * 0.5) / this.W;       // sub = pitch * 0.5 (oktawa niżej)
     this.gateOn = p.gate > -79;
     this.gateThr = dbToLin(p.gate);
+    // --- parametry 808 ---
+    const g = (k, d) => p[k] === undefined ? d : p[k], sr = this.sr;
+    this.bassOn = g('bass', 0) > 0.5;
+    this.bFixed = g('bassMode', 'track') === 'fixed';
+    this.bPluck = g('bassEnv', 'pluck') === 'pluck';
+    this.thr = dbToLin(g('bassSens', -42));
+    const oct = g('bassOct', -2), root = (Number(g('bassRoot', 5)) | 0) % 12;
+    this.octMul = Math.pow(2, oct); this.root = root;
+    this.scale = SCALES[g('bassSnap', 'chrom')] || null;
+    this.fixLf = Math.log2(clamp(440 * Math.pow(2, (24 + root + 12 * (oct + 2) - 69) / 12), 25, 130));
+    if (this.bFixed) this.lft = this.fixLf;
+    const gl = g('bassGlide', 70); this.gk = gl < 1 ? 1 : 1 - Math.exp(-3 / (gl * 0.001 * sr));
+    const rl = Math.max(5, g('bassRel', 120)); this.relK = 1 - Math.exp(-3 / (rl * 0.001 * sr));
+    this.dec = Math.pow(0.001, 1 / (Math.max(0.1, g('bassDecay', 1200) / 1000) * sr));
+    this.punchAmt = g('bassPunch', 35) / 100;
+    const col = g('bassColor', 30); this.cK = col > 0 ? 1 + col / 100 * 7 : 0; this.cN = this.cK ? Math.tanh(this.cK) : 1;
   }
-  process(inp, o0, o1, o2) {
+  /** Zamienia wykrytą wysokość głosu na docelową wysokość basu (log2 Hz): transpozycja, złożenie do zakresu 30–125 Hz, snap do skali. */
+  mapPitch(f) {
+    f *= this.octMul;
+    while (f > 125) f *= 0.5;
+    while (f < 30) f *= 2;
+    if (this.scale) {
+      const midi = 69 + 12 * Math.log2(f / 440), r = Math.round(midi);
+      let best = r, bd = 9;
+      for (let d = -2; d <= 2; d++) {
+        const n = r + d, pc = ((n - this.root) % 12 + 12) % 12;
+        if (this.scale[pc]) { const dist = Math.abs(n - midi); if (dist < bd) { bd = dist; best = n; } }
+      }
+      return Math.log2(440) + (best - 69) / 12;
+    }
+    return Math.log2(f);
+  }
+  /** Detekcja wysokości: znormalizowana funkcja różnicowa (NSDF, McLeod). Zwraca RMS okna. */
+  detect() {
+    const D = this.dbuf, m = this.dmask, W = this.WIN, lo = this.minLag - 1, hi = this.maxLag + 1, n = this.nsdf;
+    const s = this.dw - (W + hi + 1);
+    let e0 = 0;
+    for (let i = 0; i < W; i++) { const a = D[(s + i) & m]; e0 += a * a; }
+    for (let tau = lo; tau <= hi; tau++) {
+      let acf = 0, e1 = 0;
+      for (let i = 0; i < W; i++) { const b = D[(s + i + tau) & m]; acf += D[(s + i) & m] * b; e1 += b * b; }
+      n[tau] = 2 * acf / (e0 + e1 + 1e-12);
+    }
+    let i = this.minLag; const end = this.maxLag, pk = this.pk;
+    while (i <= end && n[i] > 0) i++;
+    let gmax = 0, cnt = 0;
+    while (i <= end) {
+      while (i <= end && n[i] <= 0) i++;
+      if (i > end) break;
+      let best = i;
+      while (i <= end && n[i] > 0) { if (n[i] > n[best]) best = i; i++; }
+      if (cnt < 40) pk[cnt++] = best;
+      if (n[best] > gmax) gmax = n[best];
+    }
+    this.cf = 0; this.cc = 0;
+    if (cnt) {
+      let sel = pk[0];
+      for (let k = 0; k < cnt; k++) if (n[pk[k]] >= 0.85 * gmax) { sel = pk[k]; break; }   // najkrótszy sensowny okres = brak błędów oktawowych
+      const a = n[sel - 1], b = n[sel], c = n[sel + 1], den = a - 2 * b + c;
+      const d = Math.abs(den) > 1e-9 ? clamp(0.5 * (a - c) / den, -0.5, 0.5) : 0;
+      this.cf = this.fd / (sel + d); this.cc = b;
+    }
+    return Math.sqrt(e0 / W);
+  }
+  analyze() {
+    const rms = this.detect();
+    if (this.cc > 0.55 && this.cf > 0 && rms > this.thr * 0.7) {
+      const h = this.fHist; h[0] = h[1]; h[1] = h[2]; h[2] = this.cf;
+      const a = h[0], b = h[1], c = h[2];
+      this.detF = (a > 0 && b > 0) ? Math.max(Math.min(a, b), Math.min(Math.max(a, b), c)) : c;   // mediana z 3 — usuwa wyskoki
+      if (!this.bFixed) this.lft = this.mapPitch(this.detF);
+      this.voicedHold = this.vHoldN;
+    }
+  }
+  trigger() {
+    this.noteOn = true; this.sinceTrig = 0; this.punch = 1; this.decEnv = 1;
+    if (this.amp < 0.01) this.ph = 0;               // start sinusa od zera = brak kliknięcia
+  }
+  /** Jedna próbka syntezatora 808. */
+  synth() {
+    const thr = this.thr;
+    if (this.voicedHold > 0 && --this.voicedHold === 0) { this.fHist[0] = this.fHist[1] = this.fHist[2] = 0; }
+    const voiced = this.bFixed ? this.fe > thr : (this.voicedHold > 0 && this.fe > thr * 0.6);
+    if (voiced) this.openHold = this.openN; else if (this.openHold > 0) this.openHold--;
+    const open = this.openHold > 0;
+    let tgt = 0, k = this.relK;
+    if (this.bPluck) {
+      this.sinceTrig++;
+      if (open) {
+        if (!this.noteOn) { if (this.sinceTrig > this.retrigN * 0.6) this.trigger(); }
+        else if (this.sinceTrig > this.retrigN && this.fe > thr * 2 && this.fe > 1.8 * this.se) this.trigger();   // kolejna sylaba = nowe uderzenie
+      } else this.noteOn = false;
+      if (this.noteOn) { this.decEnv *= this.dec; tgt = this.decEnv; k = this.atkK; }
+    } else if (open) tgt = Math.min(1, Math.sqrt(Math.min(1, this.fe * 6)));
+    if (tgt > this.amp) k = this.atkK;
+    if (this.amp < 0.002 && tgt > 0) this.lf = this.lft;     // nowa nuta po ciszy: bez ślizgu z poprzedniej
+    this.amp += (tgt - this.amp) * k;
+    if (this.amp < 1e-5 && tgt === 0) { this.amp = 0; return 0; }
+    this.lf += (this.lft - this.lf) * this.gk;             // glide w skali logarytmicznej (slide 808)
+    let f = Math.pow(2, this.lf);
+    if (this.punch > 0.002) { f *= Math.pow(2, this.punchAmt * this.punch); this.punch *= this.punchK; }   // pitch-drop na starcie
+    this.ph += f / this.sr; if (this.ph >= 1) this.ph -= 1;
+    let s = Math.sin(6.283185307179586 * this.ph);
+    if (this.cK > 0) s = Math.tanh(s * this.cK) / this.cN;   // harmoniczne (kolor)
+    return s * this.amp;
+  }
+  process(inp, o0, o1, o2, o3) {
     const n = inp.length, W = this.W, buf = this.buf, mask = this.mask, D0 = W / 2 + 2, TP = 6.283185307179586;
     let w = this.w, phA = this.phA, phB = this.phB, env = this.env, gain = this.gain, hold = this.hold;
     const read = d => { const pos = w - d, ip = Math.floor(pos), fr = pos - ip; return buf[ip & mask] * (1 - fr) + buf[(ip + 1) & mask] * fr; };
@@ -506,6 +640,18 @@ class VoiceCore {
         x *= gain;
       }
       buf[w] = x;
+      let bs = 0;
+      if (this.bassOn) {                           // --- 808 sterowany głosem ---
+        const ax = Math.abs(x);
+        this.fe = ax > this.fe ? ax : this.fe * this.feRel;
+        this.se += (this.fe - this.se) * this.seK;
+        this.dacc += x;
+        if (++this.dcnt >= this.D) {
+          this.dbuf[this.dw] = this.dacc / this.D; this.dw = (this.dw + 1) & this.dmask; this.dacc = 0; this.dcnt = 0;
+          if (++this.hopc >= 128) { this.hopc = 0; this.analyze(); }
+        }
+        bs = this.synth();
+      }
       const dry = read(D0);
       let main = dry;
       if (!this.bypassA) {                         // --- pitch shifter ---
@@ -521,16 +667,14 @@ class VoiceCore {
         sub = read(2 + phB * W) * g1 + read(2 + p2 * W) * (1 - g1);
         phB += this.incB; if (phB >= 1) phB -= 1; else if (phB < 0) phB += 1;
       }
-      o0[i] = main; o1[i] = sub; o2[i] = dry;
+      o0[i] = main; o1[i] = sub; o2[i] = dry; if (o3) o3[i] = bs;
       w = (w + 1) & mask;
     }
     this.w = w; this.phA = phA; this.phB = phB; this.env = env; this.gain = gain; this.hold = hold;
   }
 }
-
 /* ===================== 3. Graf Web Audio (live + offline) ================= */
 function mulberry32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-
 /** Syntetyczna odpowiedź impulsowa pogłosu (szum z zanikiem + tłumienie góry). Deterministyczna. */
 function makeIR(c, time) {
   const sr = c.sampleRate, len = Math.max(64, Math.floor(sr * time));
@@ -546,7 +690,6 @@ function makeIR(c, time) {
   }
   return b;
 }
-
 function makeDriveCurve(type, drive) {
   const n = 2048, c = new Float32Array(n), k = 1 + drive / 100 * 24;
   for (let i = 0; i < n; i++) {
@@ -559,13 +702,14 @@ function makeDriveCurve(type, drive) {
   }
   return c;
 }
-
-/** Tworzy cały łańcuch efektów. Wejście: g.input (ChannelSplitter na 3 kanały z VoiceCore). Wyjście: g.out */
+/** Tworzy cały łańcuch efektów. Wejście: g.input (ChannelSplitter na 4 kanały z VoiceCore). Wyjście: g.out */
 function buildGraph(c) {
   const g = { ctx: c };
   const bq = (type) => { const f = c.createBiquadFilter(); f.type = type; return f; };
   const gn = (v = 1) => { const x = c.createGain(); x.gain.value = v; return x; };
-  g.input = c.createChannelSplitter(3);
+  g.input = c.createChannelSplitter(4);
+  g.voiceGain = gn(1);
+  g.bassHP = bq('highpass'); g.bassHP.frequency.value = 24; g.bassHP.Q.value = -3.0103; g.bassGain = gn(0);
   g.hp = bq('highpass'); g.hp.Q.value = -3.0103;           // Butterworth (Q=0.707 w dB)
   g.shelf = bq('lowshelf'); g.bump = bq('peaking'); g.mid = bq('peaking');
   g.drive = c.createWaveShaper(); g.drive.oversample = '2x'; g.driveOut = gn();
@@ -580,12 +724,14 @@ function buildGraph(c) {
   g.limiter.threshold.value = -2; g.limiter.knee.value = 0; g.limiter.ratio.value = 20;
   g.limiter.attack.value = 0.002; g.limiter.release.value = 0.12;
   g.clip = c.createWaveShaper(); g.clip.curve = new Float32Array([-0.98, 0, 0.98]);   // twardy sufit
-  // tor główny
-  g.input.connect(g.hp, 0);
+  // tor główny (głos)
+  g.input.connect(g.voiceGain, 0); g.voiceGain.connect(g.hp);
   g.hp.connect(g.shelf); g.shelf.connect(g.bump); g.bump.connect(g.mid); g.mid.connect(g.drive);
   g.drive.connect(g.driveOut); g.driveOut.connect(g.lp); g.lp.connect(g.comp); g.comp.connect(g.makeup);
   g.makeup.connect(g.wetGain); g.wetGain.connect(g.pre);
-  // sub-bas (omija HP użytkownika, wchodzi przed półkę/drive)
+  // 808 (syntezowany): omija HP głosu, wchodzi przed półkę/drive/LP/kompresor
+  g.input.connect(g.bassHP, 3); g.bassHP.connect(g.bassGain); g.bassGain.connect(g.shelf);
+  // sub-bas z głosu (omija HP użytkownika, wchodzi przed półkę/drive)
   g.input.connect(g.subHP, 1); g.subHP.connect(g.subLP); g.subLP.connect(g.subLP2); g.subLP2.connect(g.subGain); g.subGain.connect(g.shelf);
   // suchy głos
   g.input.connect(g.dryGain, 2); g.dryGain.connect(g.pre);
@@ -599,7 +745,6 @@ function buildGraph(c) {
   g.out = g.clip;
   return g;
 }
-
 /** Ustawia parametry węzłów. instant=true → natychmiast (offline), inaczej płynnie (live). */
 function applyParams(g, p, instant) {
   const c = g.ctx, t = c.currentTime;
@@ -623,8 +768,11 @@ function applyParams(g, p, instant) {
   // sub
   set(g.subLP.frequency, p.subCut); set(g.subLP2.frequency, p.subCut);
   set(g.subGain.gain, p.sub / 100 * 1.6);
+  // 808 + głos oryginalny
+  set(g.bassGain.gain, p.bass / 100 * 0.9);
+  set(g.voiceGain.gain, p.voiceMix / 100);
   // dry/wet
-  set(g.dryGain.gain, 1 - p.mix / 100); set(g.wetGain.gain, p.mix / 100);
+  set(g.dryGain.gain, (1 - p.mix / 100) * p.voiceMix / 100); set(g.wetGain.gain, p.mix / 100);
   // pogłos
   set(g.revGain.gain, p.revWet / 100 * 1.3);
   if (g._revT !== p.revTime) {
@@ -636,7 +784,6 @@ function applyParams(g, p, instant) {
   set(g.delay.delayTime, p.echoTime / 1000); set(g.echoGain.gain, p.echoMix / 100 * 0.9);
   set(g.master.gain, dbToLin(p.master));
 }
-
 /* ================= AudioContext, mikrofon, tor live ===================== */
 function ensureCtx() {
   if (!ctx) {
@@ -646,10 +793,10 @@ function ensureCtx() {
     ctx.onstatechange = updateCtxChip;
     liveCore = new VoiceCore(ctx.sampleRate);
     liveCore.setParams(state.params);
-    proc = ctx.createScriptProcessor(2048, 1, 3);
+    proc = ctx.createScriptProcessor(2048, 1, 4);
     proc.onaudioprocess = e => {
       const ib = e.inputBuffer, ob = e.outputBuffer;
-      liveCore.process(ib.getChannelData(0), ob.getChannelData(0), ob.getChannelData(1), ob.getChannelData(2));
+      liveCore.process(ib.getChannelData(0), ob.getChannelData(0), ob.getChannelData(1), ob.getChannelData(2), ob.getChannelData(3));
     };
     liveG = buildGraph(ctx);
     applyParams(liveG, state.params, true);
@@ -676,7 +823,6 @@ function updateCtxChip() {
 function setChip(id, cls, text) { const e = $('#' + id); e.className = 'chip ' + cls; e.textContent = text; }
 function setMsg(text, cls = '') { const m = $('#msg'); m.className = 'msg ' + cls; m.textContent = text; }
 let toastT; function toast(t) { const e = $('#toast'); e.textContent = t; e.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => e.classList.remove('show'), 3200); }
-
 function micError(err) {
   const n = err && err.name;
   if (!window.isSecureContext) return 'Mikrofon wymaga bezpiecznego połączenia (https:// lub localhost). Uruchom stronę przez GitHub Pages albo lokalny serwer (np. „python -m http.server”).';
@@ -686,7 +832,6 @@ function micError(err) {
   if (n === 'OverconstrainedError') return 'Wybrane urządzenie jest niedostępne — wybierz inne wejście.';
   return 'Nie udało się uruchomić mikrofonu: ' + (err && err.message ? err.message : err);
 }
-
 async function startMic() {
   if (state.micOn) return true;
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
@@ -726,7 +871,6 @@ function stopMic() {
   updateButtons();
 }
 async function restartMic() { if (!state.micOn) return; const wasMon = state.monitorOn; stopMic(); if (await startMic() && wasMon) setMonitor(true); }
-
 async function refreshDevices() {
   if (!navigator.mediaDevices || !navigator.mediaDevices.enumerateDevices) return;
   try {
@@ -737,7 +881,6 @@ async function refreshDevices() {
     if ([...sel.options].some(o => o.value === cur)) sel.value = cur;
   } catch (e) { /* lista urządzeń niedostępna — zostaje domyślny */ }
 }
-
 /* ============================ Live monitor =============================== */
 function setMonitorGain() {
   if (!monitorGain) return;
@@ -746,7 +889,7 @@ function setMonitorGain() {
 }
 function setMonitor(on) {
   state.monitorOn = on; $('#chkMonitor').checked = on;
-  if (on) setMsg('Live Monitor włączony — słyszysz przetworzony głos. Opóźnienie ≈ 0,1 s.', 'ok');
+  if (on) setMsg('Live Monitor włączony — słyszysz przetworzony dźwięk. Opóźnienie ≈ 0,1 s.', 'ok');
   setMonitorGain();
 }
 async function requestMonitor() {
@@ -767,7 +910,6 @@ function feedbackGuard(peak) {                         // wykrywa długotrwały 
     setMsg('Wykryto możliwe sprzężenie zwrotne — Live Monitor wyłączony. Użyj słuchawek lub zmniejsz Master / Drive.', 'warn'); toast('⚠ Monitor wyłączony (sprzężenie?)');
   }
 }
-
 /* ============================== Nagrywanie ================================ */
 function onRecChunk(e) {
   if (!rec.active) return;
@@ -785,7 +927,7 @@ async function startRecording() {
   stopPlayback();
   if (take) { take = null; waveKey = ''; }
   rec.active = true; rec.chunks = []; rec.len = 0; rec.peaks = []; rec.sr = ctx.sampleRate;
-  setMsg('Nagrywanie… mów do mikrofonu. Zapisywany jest czysty oryginał — efekty zastosujemy po nagraniu.', '');
+  setMsg('Nagrywanie… nuć / mów do mikrofonu. Zapisywany jest czysty oryginał — 808 zostanie wygenerowany po nagraniu.', '');
   setChip('chipMic', 'live', 'Mikrofon: NAGRYWANIE');
   updateButtons();
 }
@@ -800,7 +942,7 @@ function stopRecording() {
   const rawBuf = ctx.createBuffer(1, raw.length, rec.sr); rawBuf.copyToChannel(raw, 0);
   take = { raw, sr: rec.sr, rawBuf, processed: null, ver: 0, saved: false };
   waveKey = ''; pb.offset = 0;
-  setMsg('Nagranie zapisane (' + fmtTime(raw.length / rec.sr) + '). Trwa nakładanie efektów…', '');
+  setMsg('Nagranie zapisane (' + fmtTime(raw.length / rec.sr) + '). Trwa generowanie basu…', '');
   updateButtons(); scheduleRender(0);
 }
 function clearAll() {
@@ -810,7 +952,6 @@ function clearAll() {
   if (state.micOn) setChip('chipMic', 'ok', 'Mikrofon: aktywny');
   updateButtons();
 }
-
 /* ====================== Render offline (efekty → bufor) =================== */
 let renderId = 0, renderTimer = null, renderPromise = Promise.resolve();
 function scheduleRender(delay = 220) {
@@ -826,25 +967,26 @@ async function renderTake() {
   const tk = take; if (!tk) return;
   const id = ++renderId, p = { ...state.params }, sr = tk.sr;
   try {
-    // ogon na pogłos / echo / opóźnienie ziarna
+    // ogon na pogłos / echo / opóźnienie ziarna / release 808
     let tail = 0.12;
     if (p.revWet > 0) tail = Math.max(tail, p.revTime + 0.1);
     if (p.echoMix > 0) tail = Math.max(tail, Math.min(3, p.echoTime / 1000 * 7));
+    if (p.bass > 0) tail = Math.max(tail, Math.min(3, p.bassRel / 1000 * 2 + 0.25));
     const n = tk.raw.length + Math.ceil(sr * tail);
     const inp = new Float32Array(n); inp.set(tk.raw);
-    const o0 = new Float32Array(n), o1 = new Float32Array(n), o2 = new Float32Array(n);
+    const o0 = new Float32Array(n), o1 = new Float32Array(n), o2 = new Float32Array(n), o3 = new Float32Array(n);
     const core = new VoiceCore(sr); core.setParams(p);
-    const SL = 1 << 18;
+    const SL = 1 << 16;
     for (let a = 0; a < n; a += SL) {
       const b = Math.min(n, a + SL);
-      core.process(inp.subarray(a, b), o0.subarray(a, b), o1.subarray(a, b), o2.subarray(a, b));
+      core.process(inp.subarray(a, b), o0.subarray(a, b), o1.subarray(a, b), o2.subarray(a, b), o3.subarray(a, b));
       if (id !== renderId) return;
       if (b < n) await sleep(0);
     }
     const OAC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
     const oc = new OAC(2, n, sr);
-    const sb = oc.createBuffer(3, n, sr);
-    sb.copyToChannel(o0, 0); sb.copyToChannel(o1, 1); sb.copyToChannel(o2, 2);
+    const sb = oc.createBuffer(4, n, sr);
+    sb.copyToChannel(o0, 0); sb.copyToChannel(o1, 1); sb.copyToChannel(o2, 2); sb.copyToChannel(o3, 3);
     const src = oc.createBufferSource(); src.buffer = sb;
     const g = buildGraph(oc); applyParams(g, p, true);
     src.connect(g.input); g.out.connect(oc.destination); src.start();
@@ -854,7 +996,11 @@ async function renderTake() {
     let pk = 0; for (let ch = 0; ch < out.numberOfChannels; ch++) { const d = out.getChannelData(ch); for (let i = 0; i < d.length; i++) { const a = Math.abs(d[i]); if (a > pk) pk = a; } }
     tk.peak = pk;
     $('#renderStat').textContent = '✔ gotowe · szczyt ' + linToDb(pk).toFixed(1) + ' dBFS' + (pk > 0.97 ? ' — blisko przesterowania!' : '');
-    if (tk.firstRender === undefined) { tk.firstRender = true; setMsg('Gotowe! Odtwórz, zmieniaj suwaki / presety (efekt przelicza się na bieżąco), potem pobierz MP3.', 'ok'); }
+    if (tk.firstRender === undefined) {
+      tk.firstRender = true;
+      if (p.bass > 0 && pk < 0.01) setMsg('Nie wykryto głosu do zamiany na bas. Obniż „Czułość wykrywania” (np. −50 dB), nagraj głośniej albo nuć dłuższą głoską.', 'warn');
+      else setMsg('Gotowe! Odtwórz, zmieniaj suwaki / presety (bas przelicza się na bieżąco), potem pobierz MP3.', 'ok');
+    }
     if (pb.playing && state.ab === 'proc') play(getPos());
     updateButtons();
   } catch (e) {
@@ -862,7 +1008,6 @@ async function renderTake() {
     setMsg('Błąd przetwarzania dźwięku: ' + (e.message || e), 'err');
   }
 }
-
 /* =============================== Odtwarzanie ============================== */
 const pb = { src: null, startedAt: 0, offset: 0, playing: false, token: 0 };
 function curBuf() { if (!take) return null; return state.ab === 'orig' ? take.rawBuf : take.processed; }
@@ -880,7 +1025,6 @@ function play(offset = 0) {
 }
 function pausePlayback() { if (!pb.playing) return; pb.offset = getPos(); stopSource(); pb.playing = false; setMonitorGain(); updateButtons(); }
 function stopPlayback() { stopSource(); pb.playing = false; pb.offset = 0; if (ctx) setMonitorGain(); updateButtons(); }
-
 /* ================================ Eksport ================================= */
 const MP3_CDNS = [
   'https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js',
@@ -977,7 +1121,6 @@ async function exportWav() {
   if (!take) return; await ensureRendered(); if (!take.processed) return;
   download(encodeWav(take.processed), fileName('wav')); take.saved = true; setMsg('Pobrano plik WAV.', 'ok');
 }
-
 /* ============================ UI: parametry ============================== */
 const toSlider = (d, v) => d.log ? Math.log(v / d.min) / Math.log(d.max / d.min) : v;
 const fromSlider = (d, s) => {
@@ -1041,7 +1184,7 @@ function setAll(values, name, idx) {
 function buildPresetUI() {
   const host = $('#presets');
   PRESETS.forEach((p, i) => {
-    const b = document.createElement('button'); b.type = 'button'; b.className = 'preset';
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'preset' + (p.is808 ? ' is808' : '');
     b.innerHTML = `<b>${p.name}</b><span>${p.desc}</span>`;
     b.addEventListener('click', () => { setAll(p.v, p.name, i); toast('Preset: ' + p.name); });
     host.appendChild(b);
@@ -1059,10 +1202,12 @@ function randomize() {
   });
   v.compAtk = 5 + Math.round(Math.random() * 20); v.compRel = 100 + Math.round(Math.random() * 30) * 10;
   v.master = -2;
+  // losowanie ma dawać zawsze użyteczny 808: śledzenie melodii + uderzenie, bez głosu
+  v.bassMode = 'track'; v.bassEnv = Math.random() < 0.75 ? 'pluck' : 'follow'; v.bassSens = -44; v.voiceMix = 0; v.sub = 0; v.pitch = 0; v.driveType = ['tanh', 'tube', 'hard'][Math.floor(Math.random() * 3)];
   setAll(v, 'Eksperyment', -1); state.modified = false; syncUI();
-  toast('🎲 Wylosowano nowe ustawienia');
+  toast('🎲 Wylosowano nowe ustawienia 808');
 }
-function exportJson() { return JSON.stringify({ app: 'bas-glos', version: 1, preset: state.presetName, params: state.params }, null, 2); }
+function exportJson() { return JSON.stringify({ app: 'bas-glos', version: 2, preset: state.presetName, params: state.params }, null, 2); }
 async function copyJson() {
   const txt = exportJson();
   try { await navigator.clipboard.writeText(txt); toast('Skopiowano ustawienia (JSON)'); }
@@ -1074,19 +1219,18 @@ function importJson(text) {
   const v = { ...DEFAULTS };
   PARAMS.forEach(d => {
     if (!(d.k in src)) return;
-    if (d.type === 'select') { if (d.options.some(x => x[0] === src[d.k])) v[d.k] = src[d.k]; }
+    if (d.type === 'select') { if (d.options.some(x => x[0] === String(src[d.k]))) v[d.k] = String(src[d.k]); }
     else if (typeof src[d.k] === 'number' && isFinite(src[d.k])) v[d.k] = clamp(src[d.k], d.min, d.max);
   });
   setAll(v, (o && o.preset) || 'Własny (import)', -1);
 }
-function saveState() { try { localStorage.setItem('basglos.v1', JSON.stringify({ params: state.params, name: state.presetName, idx: state.presetIdx, mod: state.modified })); } catch (e) {} }
+function saveState() { try { localStorage.setItem('basglos.v2', JSON.stringify({ params: state.params, name: state.presetName, idx: state.presetIdx, mod: state.modified })); } catch (e) {} }
 function loadState() {
   try {
-    const o = JSON.parse(localStorage.getItem('basglos.v1') || 'null'); if (!o) return;
+    const o = JSON.parse(localStorage.getItem('basglos.v2') || 'null'); if (!o) return;
     state.params = { ...DEFAULTS, ...o.params }; state.presetName = o.name || 'Własny'; state.presetIdx = typeof o.idx === 'number' ? o.idx : -1; state.modified = !!o.mod;
   } catch (e) {}
 }
-
 /* ========================= przyciski / stan UI =========================== */
 function updateButtons() {
   const recording = rec.active, ready = !!(take && take.processed);
@@ -1101,7 +1245,6 @@ function updateButtons() {
   $('#stateTxt').textContent = recording ? '● Nagrywanie…' : pb.playing ? '▶ Odtwarzanie (' + (state.ab === 'orig' ? 'oryginał' : 'po obróbce') + ')'
     : take ? (take.processed ? 'Nagranie gotowe do odsłuchu i eksportu.' : 'Przetwarzanie…') : 'Gotowy. Naciśnij „Nagrywaj”, aby zacząć.';
 }
-
 /* =========================== 5. WIZUALIZACJE ============================== */
 const DPR = () => Math.min(window.devicePixelRatio || 1, 2);
 function fit(cv) {
@@ -1117,7 +1260,6 @@ function getTD(an) {
   return tdBuf;
 }
 function activeAnalyser() { if (!ctx) return null; if (pb.playing) return playAn; if (state.micOn) return liveAn; return null; }
-
 /* --- oscyloskop --- */
 function drawOsc(an) {
   const { c, W, H } = fit($('#cvOsc'));
@@ -1145,7 +1287,6 @@ function drawOsc(an) {
   $('#oscTag').textContent = an ? (an === playAn ? 'odtwarzanie' : 'wyjście po efektach') : 'brak sygnału';
   return peak;
 }
-
 /* --- widmo --- */
 const NB = 80; let specBands = null, specPeaks = new Float32Array(NB);
 function buildSpecBands() {
@@ -1198,7 +1339,6 @@ function drawSpec(an) {
     c.stroke();
   }
 }
-
 /* --- przebieg nagrania (z cache) --- */
 let waveKey = '', waveCache = null;
 function columnPeaks(arrs, i0, i1) {
@@ -1264,7 +1404,6 @@ function drawWave() {
     $('#waveInfo').textContent = 'Brak nagrania';
   }
 }
-
 /* --- pętla animacji + miernik --- */
 let meterVal = 0, clipHold = 0, lastFrame = 0;
 function frame(ts) {
@@ -1289,7 +1428,6 @@ function frame(ts) {
   if (rec.active) $('#timerTotal').textContent = '';
   if (rec.active && rec.len / rec.sr > 900) { stopRecording(); toast('Osiągnięto limit 15 minut'); }
 }
-
 /* ============================== INICJALIZACJA ============================= */
 function init() {
   if (!(window.AudioContext || window.webkitAudioContext)) {
@@ -1299,7 +1437,6 @@ function init() {
   setChip('chipMic', 'warn', 'Mikrofon: nieaktywny');
   updateCtxChip();
   if (!window.isSecureContext) setMsg('Uwaga: strona nie jest w bezpiecznym kontekście (https/localhost) — przeglądarka może zablokować mikrofon.', 'warn');
-
   // przyciski transportu
   $('#btnRec').addEventListener('click', () => { try { ensureCtx(); } catch (e) { setMsg(e.message, 'err'); return; } startRecording(); });
   $('#btnStop').addEventListener('click', () => { if (rec.active) stopRecording(); else stopPlayback(); });
@@ -1310,13 +1447,11 @@ function init() {
   $('#btnMic').addEventListener('click', async () => { try { ensureCtx(); } catch (e) { setMsg(e.message, 'err'); return; } if (state.micOn) stopMic(); else { if (await startMic()) setMsg('Mikrofon aktywny — widzisz podgląd na żywo. Naciśnij „Nagrywaj”.', 'ok'); } });
   $('#selDev').addEventListener('change', restartMic);
   $('#chkBrowserFx').addEventListener('change', restartMic);
-
   // monitor
   $('#chkMonitor').addEventListener('change', e => { if (e.target.checked) { e.target.checked = false; requestMonitor(); } else setMonitor(false); });
   $('#monVol').addEventListener('input', e => { state.monVol = +e.target.value; setMonitorGain(); });
   $('#phonesYes').addEventListener('click', () => { $('#phonesDlg').close(); state.phonesOK = true; requestMonitor(); });
   $('#phonesNo').addEventListener('click', () => $('#phonesDlg').close());
-
   // A/B
   $('#abSeg').addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
@@ -1332,16 +1467,14 @@ function init() {
     try { ensureCtx(); } catch (er) { return; }
     if (pb.playing) play(t); else pb.offset = t;
   });
-
   // narzędzia
-  $('#btnReset').addEventListener('click', () => { setAll({}, 'Czysty Podgląd', 4); toast('Parametry zresetowane'); });
+  $('#btnReset').addEventListener('click', () => { setAll({}, 'Czysty Podgląd', CLEAN_IDX); toast('Parametry zresetowane'); });
   $('#btnRand').addEventListener('click', randomize);
   $('#btnCopy').addEventListener('click', copyJson);
   $('#btnImport').addEventListener('click', () => { const d = $('#importDlg'); if (typeof d.showModal === 'function') d.showModal(); else { const t = prompt('Wklej JSON ustawień:'); if (t) try { importJson(t); } catch (e) { toast('Niepoprawny JSON'); } } });
   $('#importNo').addEventListener('click', () => $('#importDlg').close());
   $('#importYes').addEventListener('click', () => { try { importJson($('#importTxt').value); $('#importDlg').close(); toast('Wczytano ustawienia'); } catch (e) { toast('Niepoprawny JSON — sprawdź format'); } });
   $('#chkAdv').addEventListener('change', e => document.body.classList.toggle('advanced', e.target.checked));
-
   // uprawnienia i urządzenia
   if (navigator.permissions && navigator.permissions.query) {
     navigator.permissions.query({ name: 'microphone' }).then(ps => {
@@ -1351,14 +1484,11 @@ function init() {
   }
   if (navigator.mediaDevices && navigator.mediaDevices.addEventListener) navigator.mediaDevices.addEventListener('devicechange', refreshDevices);
   refreshDevices();
-
   // koder MP3 (ładowany od razu w tle; w razie porażki będzie próba przy eksporcie)
   loadMp3Lib();
-
   // odblokowanie AudioContext po pierwszym geście użytkownika
   const unlock = () => { if (ctx && ctx.state === 'suspended') ctx.resume().catch(() => {}); };
   ['pointerdown', 'keydown'].forEach(ev => window.addEventListener(ev, unlock, { passive: true }));
-
   window.addEventListener('beforeunload', e => { if (take && !take.saved) { e.preventDefault(); e.returnValue = ''; } });
   requestAnimationFrame(frame);
 }
